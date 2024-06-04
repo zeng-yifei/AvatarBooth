@@ -20,7 +20,45 @@
 </h4>
 
 
-# Code to be released soon
+# Install
+
+For package installation, ensure that you have installed pytorch (tested on pytorch 2.1 cuda121 and pytorch 1.13 cuda 117):
+```bash
+pip install -r requirements.txt
+```
+
+For data preparation, register and download SMPL models [here](https://smpl.is.tue.mpg.de/). Put the downloaded models in the folder `smpl_models`. The folder structure should look like
+
+```
+./
+├── ...
+└── smpl_models/
+    ├── smpl/
+        ├── SMPL_FEMALE.pkl
+        ├── SMPL_MALE.pkl
+        └── SMPL_NEUTRAL.pkl
+```
+
+# Usage
+
+To generate avatars. you can use:
+
+```bash
+python main.py --mode train --conf confs/examples/cap_america.conf
+```
+
+To use personalized model like LoRA or DreamBooth model, you can assign the corresponding file path in config file like:
+```
+general {
+    sd_path = ... # assign DreamBooth path for whole body in huggingface format, e.g. stabilityai/stable-diffusion-2-1-base or stablediffusionapi/realistic-vision(recommanded and by default)
+    sd_face_path = ... # assign DreamBooth path for face in huggingface format
+
+    lora_path = ... # assign lora path with safetensors, e.g. ./pretrained_models/A.safetensors
+}
+```
+
+To animate the avatar, you can refer to the AvatarCLIP. With the same procedure, you can obtain a animatable fbx after processing the A-pose ply model.
+
 
 # Teaser
 <img src='./assets/exhibit.jpg' height='60%'>
@@ -37,3 +75,6 @@ If you find our work useful for your research, please consider citing the paper:
   year={2023}
 }
 ```
+
+# Acknowledgement
+The code is built upon AvatarCLIP and Stable DreamFusion, we express great appreciation to the authors for their great work.
