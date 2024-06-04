@@ -44,7 +44,7 @@ For data preparation, register and download SMPL models [here](https://smpl.is.t
 To generate avatars. you can use:
 
 ```bash
-python main.py --mode train --conf confs/examples/cap_america.conf
+python main.py --mode train --conf confs/examples/obama.conf
 ```
 
 To use personalized model like LoRA or DreamBooth model, you can assign the corresponding file path in config file like:
